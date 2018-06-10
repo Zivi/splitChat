@@ -1,7 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import AppContainer from '../components/appcontainer';
 
-export default () =>
+export default () => (
   <div>
     <Head>
       <title>Split Chat</title>
@@ -9,3 +9,4 @@ export default () =>
     </Head>
     <AppContainer />
   </div>
+);

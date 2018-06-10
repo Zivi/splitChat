@@ -1,33 +1,47 @@
-import { debug } from "util";
+import { debug } from 'util';
 
 class TextInput extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      convoText: ''
-    }
+      convoText: '',
+      isTyping: false
+    };
   }
 
   updateConvoText(event) {
-    // if key is 'enter', call updateConvo
     this.setState({
       convoText: event.target.value
-    })
+    });
   }
 
-  handleClick() {
+  handleSend(event) {
+    // prevent updating the page's url on submit
+    event.preventDefault();
     this.props.onUpdateConvo(this.state.convoText, this.props.name);
-    // set the input text to blank
+    this.setState({
+      convoText: ''
+    });
+  }
+
+  isTyping() {
+    this.props.onKeyPressed(this.props.name);
   }
 
   render() {
     return (
-      <div>
-          <input type="text" placeholder="chat input" onKeyUp={this.updateConvoText.bind(this)}/>
-          <button onClick={this.handleClick.bind(this)}>send</button>
-      </div>
-    )
+      <form onSubmit={this.handleSend.bind(this)}>
+        <input
+          type="text"
+          value={this.state.convoText}
+          placeholder="chat input"
+          onChange={this.updateConvoText.bind(this)}
+          onKeyPress={this.isTyping.bind(this)}
+        />
+        <button>send</button>
+      </form>
+    );
   }
 }
 
