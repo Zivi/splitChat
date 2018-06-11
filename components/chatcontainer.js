@@ -3,7 +3,7 @@ import ChatDialogue from './chatdialogue';
 
 function ChatContainer(props) {
   return (
-    <div>
+    <div className="chat-container">
       <ChatDialogue name={props.name} messages={props.messages} />
       <TextInput
         name={props.name}
@@ -14,6 +14,13 @@ function ChatContainer(props) {
       {props.typingStatus.isTyping && props.name !== props.typingStatus.name
         ? props.typingStatus.name + ' is typing'
         : ''}
+
+      <style jsx>{`
+        .chat-container {
+          border: 1px solid black;
+          height: 95vh;
+        }
+      `}</style>
     </div>
   );
 }
