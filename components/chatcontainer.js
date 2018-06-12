@@ -10,15 +10,24 @@ function ChatContainer(props) {
         onUpdateConvo={props.onUpdateConvo}
         onKeyPressed={props.onKeyPressed}
       />
-      <div />
-      {props.typingStatus.isTyping && props.name !== props.typingStatus.name
-        ? props.typingStatus.name + ' is typing'
-        : ''}
+
+      <div className="typing-status">
+        {props.typingStatus.isTyping && props.name !== props.typingStatus.name
+          ? props.typingStatus.name + ' is typing'
+          : ''}
+      </div>
 
       <style jsx>{`
         .chat-container {
-          border: 1px solid black;
-          height: 95vh;
+          height: 97vh;
+        }
+
+        .chat-container:first-child {
+          border-right: 1px solid #e0e0e0;
+        }
+
+        .typing-status {
+          padding: 2px 0 2px 7px;
         }
       `}</style>
     </div>
